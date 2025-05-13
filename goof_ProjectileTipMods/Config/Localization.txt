@@ -1,0 +1,7 @@
+Key,File,Type,UsedInMainMenu,NoTranslate,english,Context / Alternate
+
+modBodkinTips,item_modifiers,mod,,,Bodkin Tips Mod
+modBodkinTipsDesc,item_modifiers,mod,,,Bodkin-tipped projectiles ignore 35% of the target's armor and pierce through the first target.
+
+modBroadheadTips,item_modifiers,mod,,,Broadhead Tips Mod
+modBroadheadTipsDesc,item_modifiers,mod,,,Broadhead-tipped projectiles inflict a Gushing Wound in its target.\n\nGushing Wounds deal damage over time and slow by 35%.

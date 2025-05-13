@@ -1,0 +1,54 @@
+<goofs_Projectile_Tip_Mods>
+	<append xpath="/buffs">
+		<buff name="buffInjuryBroadheadBleeding" name_key="buffInjuryBleedingBroadheadName" description_key="buffInjuryBleedingBroadheadDesc" tooltip_key="buffInjuryBleedingBroadheadTooltip" icon="ui_game_symbol_critical" icon_color="255,0,0" icon_blink="true">
+			<damage_type value="bloodloss"/>
+			<damage_source value="Internal"/>
+			<stack_type value="replace"/>
+			<duration value="0"/>
+			<display_value value="$bleedDuration"/>
+			<display_value_format value="time"/>
+
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedDuration" operation="set" value="40"/>
+				<triggered_effect trigger="onSelfBuffStack" action="ModifyCVar" cvar="$bleedDuration" operation="set" value="40"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$bleedDuration" operation="add" value="-1"/>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffLacerationBleedingStatus"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInjuryBroadheadBleeding">
+					<requirement name="CVarCompare" cvar="$bleedDuration" operation="LTE" value="0"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" buff="buffInjuryBroadheadBleeding">
+					<requirement name="CVarCompare" cvar="bleedCounter" operation="Equals" value="0"/>
+				</triggered_effect>
+
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$bleedAmount" operation="set" value="10"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$bleedAmount" operation="set" value="10"/>
+
+				<passive_effect name="HealthChangeOT" operation="base_subtract" value="@$bleedAmount"/>
+
+				<passive_effect name="RunSpeed" operation="perc_add" value="@$bleedBroadheadSlowdown"/>
+
+				<triggered_effect trigger="onSelfBuffRemove" action="RemoveCVar" cvar="bleedCounter,$bleedAmount,$bleedSlowdown,$bleedDuration"/>
+
+				<triggered_effect trigger="onSelfBuffStart" action="PlaySound" sound="buff_bleeding" play_in_head="true"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="StopSound" sound="buff_bleeding" play_in_head="true"/>
+				<triggered_effect trigger="onSelfLeaveGame" action="StopSound" sound="buff_bleeding" play_in_head="true"/>
+				<triggered_effect trigger="onSelfEnteredGame" action="PlaySound" sound="buff_bleeding" play_in_head="true"/>
+
+				<triggered_effect trigger="onSelfBuffStart" action="ModifyScreenEffect" effect_name="Blur" intensity=".6" fade="0.5"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyScreenEffect" effect_name="Blur" intensity="0" fade="1"/>
+				<triggered_effect trigger="onSelfDied" action="ModifyScreenEffect" effect_name="Infected" intensity="0" fade="0"/>
+				<triggered_effect trigger="onSelfDied" action="RemoveBuff" buff="buffInjuryBleeding"/>
+			</effect_group>
+
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" buff="buffInjuryBleedingParticle"/>
+			</effect_group>
+
+			<effect_group>
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$maxBleedCounter" operation="set" value="1"/>
+			</effect_group>
+		</buff>
+	</append>
+</goofs_Projectile_Tip_Mods>

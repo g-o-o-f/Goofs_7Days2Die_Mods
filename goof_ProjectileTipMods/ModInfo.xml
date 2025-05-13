@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xml>
+   <Name value="goof_ProjectileTipMods" />
+   <DisplayName value="Goof's Projectile Tips" />
+   <Version value="1.0.0.0" /> 
+   <Description value="Adds Broadhead and Bodkin projectile tip as mods for bows and crossbows." />
+   <Author value="some_goof" /> 
+   <Website value="" /> 
+</xml>

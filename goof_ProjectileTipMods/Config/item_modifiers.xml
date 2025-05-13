@@ -1,0 +1,40 @@
+<goofs_Projectile_Tip_Mods>
+	<append xpath="/item_modifiers">
+		<item_modifier name="modBodkinTips" installable_tags="perkArchery" modifier_tags="barrelAttachment" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster"/>
+			<property name="CustomIcon" value="ammoDartIron"/>
+			<property name="DescriptionKey" value="modBodkinTipsDesc"/>
+			<property name="TraderStageTemplate" value="modsTier1"/>
+
+			<effect_group tiered="false">
+				<passive_effect name="TargetArmor" operation="perc_add" value="-.35" tags="perkArchery"/>
+				<passive_effect name="EntityPenetrationCount" operation="base_set" value="1"/>
+			</effect_group>
+		</item_modifier>
+
+		<item_modifier name="modBroadheadTips" installable_tags="perkArchery" modifier_tags="barrelAttachment" blocked_tags="noMods" type="attachment">
+			<property name="Extends" value="modGeneralMaster"/>
+			<property name="CustomIcon" value="resourceArrowHeadSteelAP"/>
+			<property name="DescriptionKey" value="modBroadheadTipsDesc"/>
+			<property name="TraderStageTemplate" value="modsTier1"/>
+
+			<effect_group tiered="false">
+				<requirement name="CVarCompare" cvar="bleedCounter" operation="LT" value="@$maxBleedBroadheadCounter" target="other"/>
+				<requirement name="ItemHasTags" tags="perkArchery"/>
+					<triggered_effect trigger="onSelfPrimaryActionRayHit" action="ModifyCVar" target="other" cvar="bleedCounter" operation="add" value="1"/>
+			</effect_group>
+
+			<effect_group tiered="false">
+				<requirement name="ItemHasTags" tags="perkArchery"/>
+				<requirement name="CVarCompare" cvar="bleedCounter" operation="GT" value="0" target="other"/>
+					<triggered_effect trigger="onSelfPrimaryActionRayHit" action="AddBuff" target="other" buff="buffInjuryBleeding"/>
+			</effect_group>
+
+			<effect_group tiered="false">
+				<requirement name="ItemHasTags" tags="perkArchery"/>
+				<requirement name="CVarCompare" cvar="$bleedSlowdown" operation="GT" value="-.35" target="other"/>
+					<triggered_effect trigger="onSelfPrimaryActionRayHit" action="ModifyCVar" target="other" cvar="$bleedSlowdown" operation="set" value="-.35"/>
+			</effect_group>
+		</item_modifier>
+	</append>
+</goofs_Projectile_Tip_Mods>

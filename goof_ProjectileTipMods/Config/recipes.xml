@@ -1,0 +1,12 @@
+<goofs_Projectile_Tip_Mods>
+	<append xpath="/recipes">
+		<recipe name="modBodkinTips" count="1" craft_time="5">
+		    <ingredient name="resourceYuccaFibers" count="10"/>
+			<ingredient name="resourceCropCottonPlant" count="5"/>
+		</recipe>
+		<recipe name="modBroadheadTips" count="1" craft_time="5">
+		    <ingredient name="resourceYuccaFibers" count="10"/>
+			<ingredient name="resourceCropCottonPlant" count="5"/>
+		</recipe>
+	</append>
+</goofs_Projectile_Tip_Mods>
