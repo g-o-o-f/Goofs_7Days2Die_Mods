@@ -8,7 +8,7 @@
 
 			<effect_group tiered="false">
 				<passive_effect name="TargetArmor" operation="perc_add" value="-.35" tags="perkArchery"/>
-				<passive_effect name="EntityPenetrationCount" operation="base_set" value="2"/>
+				<passive_effect name="EntityPenetrationCount" operation="base_set" value="1"/>
 			</effect_group>
 		</item_modifier>
 
